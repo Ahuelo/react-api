@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
+  const url = 'https://jsonplaceholder.typicode.com/todos';
+  //usar useState para gestionar los datos despues de volverlos JSON
+  const [todos, setTodos] = useState();
+  const fetchApi = async () => {
+    const res = await fetch (url);
+    const data = await res.json();
+    setTodos(data);
+    console.log();
+    
+  }
+  //usar useefect para gestionar la conexión a la api
+  useEffect(()=>{
+    fetchApi();
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      Hola mundo
     </div>
   );
 }
