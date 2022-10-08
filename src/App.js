@@ -9,7 +9,6 @@ function App() {
     const res = await fetch (url);
     const data = await res.json();
     setTodos(data);
-    console.log();
     
   }
   //usar useefect para gestionar la conexión a la api
@@ -20,6 +19,11 @@ function App() {
   return (
     <div className="App">
       Hola mundo
+      <ul>
+        {!todos ? 'Cargando...' : todos.map((todo, index) =>{
+          return <li key={todo.id}>{todo.title} {todo.completed ? '🟩' : '🟥'}</li>
+        })}
+      </ul>
     </div>
   );
 }
